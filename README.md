@@ -32,7 +32,7 @@ Follow this guide or use [ soon to be filled with vagrant link ]
 `pacman -S mariadb mariadb-clients libmariadbclient icecast libshout taglib`
 * Set the configs to your needs.. or not
 * Install Nim devel tools **Nim** & **nimble**
-* `nimble install ndbex`
+* Install this library `nimble install ndbex`
 * Follow the below Compiling guide
 
 ### Compiling SenShi:
@@ -44,11 +44,13 @@ Follow this guide or use [ soon to be filled with vagrant link ]
 * Run SenShi and go trough its setup.
 
 **TLDR:**
-```git clone https://github.com/Senketsu/SenShi
+```
+git clone https://github.com/Senketsu/SenShi
 cd SenShi/src
 nim c --threads:on senshi.nim
 nim c -d:release ./other/createDatabase.nim
-./other/createDatabase```
+./other/createDatabase
+```
 When running SenShi for ther first time, you will go trough config setup.
 
 
