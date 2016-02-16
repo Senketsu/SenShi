@@ -51,7 +51,7 @@ nim c --threads:on senshi.nim
 nim c -d:release ./other/createDatabase.nim
 ./other/createDatabase
 ```
-When running SenShi for ther first time, you will go trough config setup.
+When running SenShi for the first time, you will go trough config setup.
 
 
 

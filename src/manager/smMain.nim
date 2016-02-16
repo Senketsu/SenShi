@@ -59,7 +59,7 @@ proc save* (dbInfo: var ManDbCfg, cfg: string) =
 
 proc loadDef* (dbInfo: var ManDbCfg, cfg: string) =
  echoInfo("Manager\t- Setting default radio DB info")
- dbInfo.address = "127.0.0.1:3306"
+ dbInfo.address = "localhost"
  dbInfo.user = "root"
  dbInfo.pass = "changeme"
  dbInfo.dbName = "radio"

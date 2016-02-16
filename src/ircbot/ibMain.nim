@@ -252,9 +252,11 @@ proc start* (irc: PIrc,paths: PPaths, chanManager,chanBot: ptr StringChannel) =
  var
   conn: DbConn
   connCfg: ManDbCfg
- sleep(1)
  connCfg.load(paths.cfg.manDb)
- discard conn.connectToMysql(connCfg)
+ sleep(500)
+ if not conn.connectToMysql(connCfg):
+  echoInfo("An error has occured, please try restarting SenShi")
+  chanManager[].send("cmd_quit")
  #TODO: Check why mysql connection fails sometimes
  while true:
   if irc.connect():
