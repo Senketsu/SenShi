@@ -4,12 +4,13 @@ Currently supports only mp3 audio files. Website requests not available atm (TOD
 
 ## About:
 This started as (planned) winter pastime project.
-If you ever heard or [r/a/dio](https://r-a-d.io/), this is essentially
+If you ever heard of [r/a/dio](https://r-a-d.io/), this is essentially
  easily deployable [Hanyuu-sama](https://github.com/R-a-dio/Hanyuu-sama), written from scratch in Nim.
 Might not be as fancy, but does the job.
 
 **Note:** This is not a rewrite or copy of Hanyuu-sama in other language,
  but an **emulation** i.e: **'imitation of behavior'**.
+
 **Why (call it) emulation ?**
 * Developed purely from the knowledge of Hanyuu's behavior from the IRC chat.
 * Haven't seen Hanyuu's source code in more than a year.
@@ -22,15 +23,16 @@ Might not be as fancy, but does the job.
 * More audio formats (flac, ogg ..)
 * Will update when i think of more.
 
-### How to deploy SenShi:
+## How to deploy SenShi:
 ------------------------
+### Preparing enviroment:
 Follow this guide or use [ soon to be filled with vagrant link ]
 * Install **IceCast** & **MySQL** server & client libraries & **taglib**
-* Arch Linux example:
+* *Arch Linux example:*
 `pacman -S mariadb mariadb-clients libmariadbclient icecast libshout taglib`
 * Set the configs to your needs.. or not
 * Install Nim devel tools **Nim** & **nimble**
-* nimble install ndbex
+* `nimble install ndbex`
 * Follow the below Compiling guide
 
 ### Compiling SenShi:
@@ -40,7 +42,16 @@ Follow this guide or use [ soon to be filled with vagrant link ]
 * (Optional) If you ever in future want to add tracks to your DB easily `nim c -d:release ./other/fillTracks.nim`
 * Run `./other/createDatabase` and let it do its job.
 * Run SenShi and go trough its setup.
-* Done
+
+**TLDR:**
+```git clone https://github.com/Senketsu/SenShi
+cd SenShi/src
+nim c --threads:on senshi.nim
+nim c -d:release ./other/createDatabase.nim
+./other/createDatabase```
+When running SenShi for ther first time, you will go trough config setup.
+
+
 
 ### Contact
 * Feedback , thoughts , bug reports ?
