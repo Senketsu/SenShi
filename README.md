@@ -26,7 +26,7 @@ Might not be as fancy, but does the job.
 ## How to deploy SenShi:
 ------------------------
 ### Preparing enviroment:
-Follow this guide or use [ soon to be filled with vagrant link ]
+Follow this guide or use [SenShi's Vagrant](https://github.com/Senketsu/SenShi-vagrant)
 * Install **IceCast** & **MySQL** server & client libraries & **taglib**
 * *Arch Linux example:*
 `pacman -S mariadb mariadb-clients libmariadbclient icecast libshout taglib`
