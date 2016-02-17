@@ -41,19 +41,29 @@ proc checkReqStatus (irc: PIrc, ts: string, user: string): bool =
   irc.notice(user, reply)
 
 
+proc addNewUser(conn: DbConn, user: string) =
+ try:
+  conn.exec(sql("""INSERT INTO users (user) VALUES (?)"""), user)
+ except:
+  logEvent(true,"***Error: @addNewUser '$1'" % getCurrentExceptionMsg())
+
+proc hasUser(conn: DbConn, user: string): bool =
+ try:
+  let val = conn.getValueNew(sql("""SELECT id FROM users WHERE user = ?"""), user)
+  if val.hasData:
+   result = true
+ except:
+  logEvent(true,"***Error: @hasUser '$1'" % getCurrentExceptionMsg())
+
 proc userCanRequest(conn: DbConn,irc: PIrc, user: string): bool =
- result = false
  var
   val: TGetVal
  try:
   val = conn.getValueNew(sql("""SELECT last_request FROM users WHERE user = ?"""), user)
-  if not val.hasData:
-   conn.exec(sql("""INSERT INTO users (user) VALUES (?)"""), user)
-   val = conn.getValueNew(sql("""SELECT last_request FROM users WHERE user = ?"""),user)
   if val.hasData:
    result = irc.checkReqStatus(val.data, user)
  except:
-  discard
+  logEvent(true,"***Error: @userCanRequest '$1'" % getCurrentExceptionMsg())
 
 proc processCmd* (irc: PIrc, conn: DbConn, isPrivate: bool,
                                   chanManager,chanBot: ptr StringChannel) =
@@ -63,6 +73,8 @@ proc processCmd* (irc: PIrc, conn: DbConn, isPrivate: bool,
   query: string = ""
 
  splitCMD = irc.data.msg.split(" ")
+ if not conn.hasUser(irc.data.nick):
+  conn.addNewUser(irc.data.nick)
 
  # echo "DEBUG IRC: $1:$2" % [irc.data.nick,irc.data.msg]
 
