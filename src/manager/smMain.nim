@@ -439,7 +439,7 @@ proc start* (man: var StreamManager, paths: PPaths,
    else:
     man.status.djname = parData.user
     man.status.djid = man.conn.getDjId(parData.user)
-   if man.conn.isAfkDj(man.status.djid):
+   if man.conn.isAfkDj(man.status.djid) and not man.status.isAfkStream:
     chanStreamer[].send("cmd_start")
     man.conn.updateQueueTimes()
     man.trackCurr.clear()  ## Now it makes sense eh ? (ref to sb_new 'if' condition comment)
